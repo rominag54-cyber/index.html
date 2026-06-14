@@ -137,8 +137,8 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            width: 70px;
-            height: 70px;
+            width: 75px;
+            height: 75px;
             background: radial-gradient(circle, #ffe066 0%, #f1b51c 100%);
             color: #1a426e;
             border: 4px solid #fff;
@@ -284,18 +284,19 @@
     <canvas id="confetti-canvas"></canvas>
 
     <script>
-        // Tus frases personalizadas listas para distribuirse en dos renglones
-        const visiblePrizes = [
-            "Medio día Libre ☀️",
-            "e para café ☕",
-            "a Playadito 🧉",
-            "unas secas 🥐",
-            "io día Libre ☀️",
-            "vás a la cajón 🗓️",
-            "para mate 🧉",
-            "io día Libre ☀️"
+        // Definimos la línea 1 y línea 2 exactas para cada uno de los 8 gajos
+        const wheelSegments = [
+            { l1: "Medio día", l2: "Libre ☀️" },
+            { l1: "Vale para", l2: "café ☕" },
+            { l1: "Yerba", l2: "Playadito 🧉" },
+            { l1: "Facturas", l2: "unas secas 🥐" },
+            { l1: "Medio día", l2: "Libre ☀️" },
+            { l1: "Almanaque", l2: "al cajón 🗓️" },
+            { l1: "Equipo", l2: "para mate 🧉" },
+            { l1: "Medio día", l2: "Libre ☀️" }
         ];
 
+        // Alternancia perfecta de colores para los 8 gajos
         const colors = ["#f1b51c", "#ffffff", "#74acdf", "#f1b51c", "#ffffff", "#74acdf", "#ffffff", "#74acdf"];
 
         const canvas = document.getElementById("wheel-canvas");
@@ -306,7 +307,7 @@
 
         let currentRotation = 0;
         let isSpinning = false;
-        const numSegments = visiblePrizes.length;
+        const numSegments = wheelSegments.length;
         const segmentAngle = (2 * Math.PI) / numSegments;
 
         function drawWheel() {
@@ -317,6 +318,8 @@
 
             for (let i = 0; i < numSegments; i++) {
                 const angle = i * segmentAngle;
+                
+                // Dibujar el fondo del gajo
                 ctx.beginPath();
                 ctx.moveTo(centerX, centerY);
                 ctx.arc(centerX, centerY, radius, angle, angle + segmentAngle);
@@ -324,53 +327,32 @@
                 ctx.fillStyle = colors[i];
                 ctx.fill();
 
-                ctx.lineWidth = 1.5;
-                ctx.strokeStyle = "rgba(0,0,0,0.05)";
+                // Línea divisoria sutil
+                ctx.lineWidth = 1;
+                ctx.strokeStyle = "rgba(0,0,0,0.08)";
                 ctx.stroke();
 
+                // Dibujar el texto
                 ctx.save();
                 ctx.translate(centerX, centerY);
+                ctx.rotate(angle + segmentAngle / 2);
                 
-                // Lógica de rotación inteligente para que NADA se lea al revés
-                let midAngle = angle + segmentAngle / 2;
-                let rotateAngle = midAngle;
-                let isUpsideDown = midAngle > Math.PI / 2 && midAngle < (3 * Math.PI) / 2;
+                // Centrado horizontal
+                ctx.textAlign = "right";
 
-                if (isUpsideDown) {
-                    rotateAngle = midAngle + Math.PI; // Da vuelta el texto 180 grados si está abajo
-                }
-                
-                ctx.rotate(rotateAngle);
-
-                // Elección inteligente de color de texto
+                // Contraste de fuentes
                 if (colors[i] === "#ffffff" || colors[i] === "#f1b51c") {
-                    ctx.fillStyle = "#1a426e";
+                    ctx.fillStyle = "#1a426e"; // Azul oscuro
                 } else {
-                    ctx.fillStyle = "#ffffff";
+                    ctx.fillStyle = "#ffffff"; // Blanco
                 }
 
                 ctx.font = "bold 11px Montserrat";
-                
-                // Dividir el texto en dos partes usando los espacios
-                const words = visiblePrizes[i].split(" ");
-                let line1 = "";
-                let line2 = "";
 
-                // Agrupamos mitad y mitad de palabras
-                const middle = Math.ceil(words.length / 2);
-                line1 = words.slice(0, middle).join(" ");
-                line2 = words.slice(middle).join(" ");
-
-                // Dibujar en 2 líneas basándonos en si está arriba o abajo en la ruleta
-                if (isUpsideDown) {
-                    ctx.textAlign = "left";
-                    ctx.fillText(line1, 45, -5);
-                    ctx.fillText(line2, 45, 7);
-                } else {
-                    ctx.textAlign = "right";
-                    ctx.fillText(line1, radius - 15, -5);
-                    ctx.fillText(line2, radius - 15, 7);
-                }
+                // Ubicamos las dos líneas cerca del borde exterior (radius - 15)
+                // Ajustando la altura vertical (-6 y 6) para que queden perfectas
+                ctx.fillText(wheelSegments[i].l1, radius - 15, -5);
+                ctx.fillText(wheelSegments[i].l2, radius - 15, 7);
                 
                 ctx.restore();
             }
@@ -382,6 +364,7 @@
             if (isSpinning) return;
             isSpinning = true;
 
+            // Caída controlada en gajos "Medio día Libre" (Índices 0, 4 o 7)
             const targets = [0, 4, 7];
             const targetSegment = targets[Math.floor(Math.random() * targets.length)];
             
