@@ -267,7 +267,6 @@
         </p>
     </div>
 
-    <!-- Pantalla final obligatoria -->
     <div class="modal" id="prize-modal">
         <div class="modal-content">
             <div class="modal-icon">
@@ -285,7 +284,7 @@
     <canvas id="confetti-canvas"></canvas>
 
     <script>
-        // Los nombres exactos e iconos que tenías puestos en tu ruleta
+        // Tus frases personalizadas listas para distribuirse en dos renglones
         const visiblePrizes = [
             "Medio día Libre ☀️",
             "e para café ☕",
@@ -297,7 +296,6 @@
             "io día Libre ☀️"
         ];
 
-        // Colores de los gajos alternados
         const colors = ["#f1b51c", "#ffffff", "#74acdf", "#f1b51c", "#ffffff", "#74acdf", "#ffffff", "#74acdf"];
 
         const canvas = document.getElementById("wheel-canvas");
@@ -332,21 +330,48 @@
 
                 ctx.save();
                 ctx.translate(centerX, centerY);
-                ctx.rotate(angle + segmentAngle / 2);
-                ctx.textAlign = "right";
+                
+                // Lógica de rotación inteligente para que NADA se lea al revés
+                let midAngle = angle + segmentAngle / 2;
+                let rotateAngle = midAngle;
+                let isUpsideDown = midAngle > Math.PI / 2 && midAngle < (3 * Math.PI) / 2;
 
-                // --- MEJORA DE COLOR DE TEXTO PARA LEERSE MEJOR ---
-                if (colors[i] === "#ffffff") {
-                    ctx.fillStyle = "#1a426e"; // Letra azul oscuro si el fondo es blanco
-                } else if (colors[i] === "#f1b51c") {
-                    ctx.fillStyle = "#1a426e"; // Letra azul oscuro si el fondo es amarillo/oro
+                if (isUpsideDown) {
+                    rotateAngle = midAngle + Math.PI; // Da vuelta el texto 180 grados si está abajo
+                }
+                
+                ctx.rotate(rotateAngle);
+
+                // Elección inteligente de color de texto
+                if (colors[i] === "#ffffff" || colors[i] === "#f1b51c") {
+                    ctx.fillStyle = "#1a426e";
                 } else {
-                    ctx.fillStyle = "#ffffff"; // Letra blanca para el fondo celeste
+                    ctx.fillStyle = "#ffffff";
                 }
 
                 ctx.font = "bold 11px Montserrat";
-                // Empujamos el texto más hacia afuera (radius - 12) para que no lo tape el botón central
-                ctx.fillText(visiblePrizes[i], radius - 12, 4);
+                
+                // Dividir el texto en dos partes usando los espacios
+                const words = visiblePrizes[i].split(" ");
+                let line1 = "";
+                let line2 = "";
+
+                // Agrupamos mitad y mitad de palabras
+                const middle = Math.ceil(words.length / 2);
+                line1 = words.slice(0, middle).join(" ");
+                line2 = words.slice(middle).join(" ");
+
+                // Dibujar en 2 líneas basándonos en si está arriba o abajo en la ruleta
+                if (isUpsideDown) {
+                    ctx.textAlign = "left";
+                    ctx.fillText(line1, 45, -5);
+                    ctx.fillText(line2, 45, 7);
+                } else {
+                    ctx.textAlign = "right";
+                    ctx.fillText(line1, radius - 15, -5);
+                    ctx.fillText(line2, radius - 15, 7);
+                }
+                
                 ctx.restore();
             }
         }
@@ -357,7 +382,6 @@
             if (isSpinning) return;
             isSpinning = true;
 
-            // Forzamos la caída en los casilleros que dicen "Medio día Libre" o "io día Libre" (índices 0, 4 o 7)
             const targets = [0, 4, 7];
             const targetSegment = targets[Math.floor(Math.random() * targets.length)];
             
