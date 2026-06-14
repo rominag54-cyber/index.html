@@ -4,15 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>¡Feliz 3er Aniversario CGD Patagonia Sur!</title>
-    <!-- Google Fonts para una tipografía moderna y futbolera -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&family=Playfair+Display:ital,wght@1,700&display=swap" rel="stylesheet">
-    <!-- FontAwesome para íconos copados -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
     <style>
-        /* --- ESTILOS GENERALES Y FONDO CAMPEONES --- */
         * {
             box-sizing: border-box;
             margin: 0;
@@ -32,7 +29,6 @@
             position: relative;
         }
 
-        /* Destellos dorados de fondo (Sol de Mayo) */
         body::before {
             content: '';
             position: absolute;
@@ -61,7 +57,7 @@
             width: 100%;
             max-width: 500px;
             background: rgba(255, 255, 255, 0.95);
-            border: 4px solid #f1b51c; /* Borde de Oro */
+            border: 4px solid #f1b51c;
             border-radius: 24px;
             padding: 30px 20px;
             box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
@@ -70,7 +66,6 @@
             position: relative;
         }
 
-        /* --- DETALLES DE CAMPEONES & ÁLBUM --- */
         .album-badge {
             display: inline-flex;
             align-items: center;
@@ -91,7 +86,7 @@
         h1 {
             font-size: 24px;
             font-weight: 900;
-            color: #1a426e; /* Azul AFA */
+            color: #1a426e;
             text-transform: uppercase;
             margin-bottom: 10px;
             line-height: 1.2;
@@ -105,11 +100,6 @@
             padding: 0 10px;
         }
 
-        .intro-text strong {
-            color: #1a426e;
-        }
-
-        /* --- LA RULETA ALBICELESTE & ORO --- */
         .wheel-container {
             position: relative;
             width: 310px;
@@ -117,7 +107,6 @@
             margin: 0 auto 30px;
         }
 
-        /* Indicador de premio (Flecha dorada) */
         .pointer {
             position: absolute;
             top: -15px;
@@ -135,8 +124,8 @@
             width: 100%;
             height: 100%;
             border-radius: 50%;
-            border: 8px solid #f1b51c; /* Aro de Oro */
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2), inset 0 0 10px rgba(0,0,0,0.1);
+            border: 8px solid #f1b51c;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
             position: relative;
             overflow: hidden;
             transition: transform 5s cubic-bezier(0.1, 0.8, 0.1, 1);
@@ -148,14 +137,14 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            width: 75px;
-            height: 75px;
+            width: 70px;
+            height: 70px;
             background: radial-gradient(circle, #ffe066 0%, #f1b51c 100%);
             color: #1a426e;
             border: 4px solid #fff;
             border-radius: 50%;
             font-weight: 900;
-            font-size: 15px;
+            font-size: 13px;
             cursor: pointer;
             box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
             z-index: 15;
@@ -163,20 +152,9 @@
             align-items: center;
             justify-content: center;
             text-transform: uppercase;
-            transition: all 0.2s ease;
             outline: none;
         }
 
-        .spin-btn:hover {
-            transform: translate(-50%, -50%) scale(1.08);
-            box-shadow: 0 8px 20px rgba(241,181,28,0.5);
-        }
-
-        .spin-btn:active {
-            transform: translate(-50%, -50%) scale(0.95);
-        }
-
-        /* --- VENTANA DE PREMIO (POP-UP CELEBRACIÓN) --- */
         .modal {
             display: none;
             position: fixed;
@@ -184,7 +162,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(10, 25, 47, 0.85); /* Azul profundo translúcido */
+            background: rgba(10, 25, 47, 0.85);
             z-index: 100;
             align-items: center;
             justify-content: center;
@@ -201,21 +179,19 @@
             box-shadow: 0 20px 40px rgba(0,0,0,0.3);
             border: 4px solid #f1b51c;
             animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            position: relative;
         }
 
         .modal-icon {
             font-size: 60px;
             color: #f1b51c;
             margin-bottom: 15px;
-            animation: pulse 1.5s infinite;
         }
 
         .modal-title {
             font-size: 16px;
             text-transform: uppercase;
             letter-spacing: 1.5px;
-            color: #74acdf; /* Celeste */
+            color: #74acdf;
             font-weight: 700;
             margin-bottom: 5px;
         }
@@ -244,15 +220,9 @@
             font-weight: 700;
             font-size: 14px;
             cursor: pointer;
-            transition: background 0.2s;
             box-shadow: 0 4px 10px rgba(26,66,110,0.3);
         }
 
-        .close-btn:hover {
-            background: #133254;
-        }
-
-        /* --- CANVAS PARA EL CONFETI --- */
         #confetti-canvas {
             position: fixed;
             top: 0;
@@ -263,7 +233,6 @@
             z-index: 150;
         }
 
-        /* --- ANIMACIONES --- */
         @keyframes bounce {
             0%, 100% { transform: translateY(0); }
             50% { transform: translateY(-5px); }
@@ -273,18 +242,11 @@
             from { transform: scale(0.8); opacity: 0; }
             to { transform: scale(1); opacity: 1; }
         }
-
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.1); }
-            100% { transform: scale(1); }
-        }
     </style>
 </head>
 <body>
 
     <div class="container">
-        <!-- Badge de Álbum Completo -->
         <div class="album-badge">
             <i class="fa-solid fa-trophy"></i> ¡Álbum Completado! 🏆
         </div>
@@ -294,7 +256,6 @@
             Completamos todas las figuritas del equipo! Ahora, para coronar como campeones... ¡girá la ruleta y descubrí tu premio especial de aniversario!
         </p>
 
-        <!-- Contenedor de la Ruleta -->
         <div class="wheel-container">
             <div class="pointer"></div>
             <canvas id="wheel-canvas" class="wheel" width="310" height="310"></canvas>
@@ -306,14 +267,14 @@
         </p>
     </div>
 
-    <!-- Modal de Premio Ganado -->
+    <!-- Pantalla final obligatoria -->
     <div class="modal" id="prize-modal">
         <div class="modal-content">
             <div class="modal-icon">
                 <i class="fa-solid fa-star"></i>
             </div>
             <div class="modal-title">¡Premio de Selección!</div>
-            <div class="prize-name" id="modal-prize-name">Tarde Libre ☀️</div>
+            <div class="prize-name">Medio Día Libre ☀️</div>
             <p class="modal-desc">
                 ¡Qué golazo! Capturá esta pantalla y mandásela al encargado para coordinar cuándo te tomás tu merecido premio. ¡Gracias por ponerte la camiseta siempre!
             </p>
@@ -321,50 +282,35 @@
         </div>
     </div>
 
-    <!-- Canvas para la lluvia de papelitos -->
     <canvas id="confetti-canvas"></canvas>
 
-    <!-- Sonidos de Celebración Sintetizados por Web Audio API (Para no depender de archivos externos) -->
     <script>
-        // --- CONFIGURACIÓN DE LOS PREMIOS ---
-        // Los premios EXACTOS que querías mantener
-        const prizes = [
+        // Los nombres exactos e iconos que tenías puestos en tu ruleta
+        const visiblePrizes = [
             "Medio día Libre ☀️",
-            "Bombilla para mate 🧉",
-            "Almanaque 2024 que quedó en un cajón 📆",
-            "Medio día Libre ☀️",
-            "Dos mediaslunas secas 🥐",
-            "1/2 kg de yerba Playadito 🧉",
-            "Vasito descartable para café ☕",
-            "Medio día Libre ☀️"
+            "e para café ☕",
+            "a Playadito 🧉",
+            "unas secas 🥐",
+            "io día Libre ☀️",
+            "vás a la cajón 🗓️",
+            "para mate 🧉",
+            "io día Libre ☀️"
         ];
 
-        // Colores temáticos alternados (Celeste AFA, Blanco y Oro)
-        const colors = [
-            "#74acdf", // Celeste
-            "#ffffff", // Blanco
-            "#74acdf", // Celeste
-            "#ffffff", // Blanco
-            "#f1b51c", // Oro para destacar
-            "#74acdf", // Celeste
-            "#ffffff", // Blanco
-            "#f1b51c"  // Oro para destacar
-        ];
+        // Colores de los gajos alternados
+        const colors = ["#f1b51c", "#ffffff", "#74acdf", "#f1b51c", "#ffffff", "#74acdf", "#ffffff", "#74acdf"];
 
         const canvas = document.getElementById("wheel-canvas");
         const ctx = canvas.getContext("2d");
         const spinButton = document.getElementById("spin-button");
         const modal = document.getElementById("prize-modal");
-        const modalPrizeName = document.getElementById("modal-prize-name");
         const closeModal = document.getElementById("close-modal");
 
         let currentRotation = 0;
         let isSpinning = false;
-
-        const numSegments = prizes.length;
+        const numSegments = visiblePrizes.length;
         const segmentAngle = (2 * Math.PI) / numSegments;
 
-        // Dibujar la ruleta en el Canvas
         function drawWheel() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
             const centerX = canvas.width / 2;
@@ -373,8 +319,6 @@
 
             for (let i = 0; i < numSegments; i++) {
                 const angle = i * segmentAngle;
-                
-                // Dibujar el gajo
                 ctx.beginPath();
                 ctx.moveTo(centerX, centerY);
                 ctx.arc(centerX, centerY, radius, angle, angle + segmentAngle);
@@ -382,73 +326,63 @@
                 ctx.fillStyle = colors[i];
                 ctx.fill();
 
-                // Borde de gajo en gris/dorado muy suave
                 ctx.lineWidth = 1.5;
-                ctx.strokeStyle = "rgba(0,0,0,0.08)";
+                ctx.strokeStyle = "rgba(0,0,0,0.05)";
                 ctx.stroke();
 
-                // Dibujar el texto
                 ctx.save();
                 ctx.translate(centerX, centerY);
                 ctx.rotate(angle + segmentAngle / 2);
                 ctx.textAlign = "right";
-                ctx.fillStyle = (colors[i] === "#ffffff") ? "#1a426e" : "#ffffff";
-                
-                // Si el fondo es Oro, el texto va en azul oscuro
-                if (colors[i] === "#f1b51c") ctx.fillStyle = "#1a426e";
 
-                ctx.font = "bold 13px Montserrat";
-                // Posicionar el texto dentro del gajo
-                ctx.fillText(prizes[i], radius - 20, 5);
+                // --- MEJORA DE COLOR DE TEXTO PARA LEERSE MEJOR ---
+                if (colors[i] === "#ffffff") {
+                    ctx.fillStyle = "#1a426e"; // Letra azul oscuro si el fondo es blanco
+                } else if (colors[i] === "#f1b51c") {
+                    ctx.fillStyle = "#1a426e"; // Letra azul oscuro si el fondo es amarillo/oro
+                } else {
+                    ctx.fillStyle = "#ffffff"; // Letra blanca para el fondo celeste
+                }
+
+                ctx.font = "bold 11px Montserrat";
+                // Empujamos el texto más hacia afuera (radius - 12) para que no lo tape el botón central
+                ctx.fillText(visiblePrizes[i], radius - 12, 4);
                 ctx.restore();
             }
         }
 
         drawWheel();
 
-        // --- SISTEMA DE GIRO ---
         spinButton.addEventListener("click", () => {
             if (isSpinning) return;
             isSpinning = true;
 
-            // Generar giros aleatorios (mínimo 5 vueltas completas + ángulo aleatorio)
-            const extraDegrees = Math.floor(Math.random() * 360);
-            const spinDegrees = (360 * 6) + extraDegrees;
-            currentRotation += spinDegrees;
+            // Forzamos la caída en los casilleros que dicen "Medio día Libre" o "io día Libre" (índices 0, 4 o 7)
+            const targets = [0, 4, 7];
+            const targetSegment = targets[Math.floor(Math.random() * targets.length)];
+            
+            const targetDegrees = (360 - (targetSegment * (360 / numSegments))) - 90;
+            const extraVueltas = 360 * 5;
+            
+            const currentModulo = currentRotation % 360;
+            currentRotation += extraVueltas + (targetDegrees - currentModulo + 360) % 360;
 
-            // Reproducir un sonido de clic rítmico mientras gira (sintetizado)
             playSpinSound();
-
             canvas.style.transform = `rotate(${currentRotation}deg)`;
 
-            // Esperar que termine la animación de CSS (5 segundos)
             setTimeout(() => {
                 isSpinning = false;
-                
-                // Calcular qué premio cayó (el puntero está arriba, que es -90 grados o 270 grados en trigonometría)
-                const actualDegrees = (360 - (currentRotation % 360)) % 360;
-                // Sumar 90 para compensar que el puntero está arriba
-                const index = Math.floor(((actualDegrees + 90) % 360) / (360 / numSegments));
-                
-                const wonPrize = prizes[index];
-                showPrize(wonPrize);
+                modal.style.display = "flex";
+                playWinSound();
+                startConfetti();
             }, 5000);
         });
-
-        // --- MOSTRAR PREMIO Y EFECTO CONFETI ---
-        function showPrize(prize) {
-            modalPrizeName.textContent = prize;
-            modal.style.display = "flex";
-            playWinSound();
-            startConfetti();
-        }
 
         closeModal.addEventListener("click", () => {
             modal.style.display = "none";
             stopConfetti();
         });
 
-        // --- EFECTOS DE SONIDO SINTETIZADOS (Sin usar archivos externos) ---
         function playSpinSound() {
             try {
                 const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
@@ -456,15 +390,12 @@
                 for (let i = 0; i < 20; i++) {
                     const osc = audioCtx.createOscillator();
                     const gain = audioCtx.createGain();
-                    osc.type = 'sine';
                     osc.frequency.setValueAtTime(600 - (i * 20), audioCtx.currentTime + time);
                     gain.gain.setValueAtTime(0.05, audioCtx.currentTime + time);
                     gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + time + 0.05);
-                    osc.connect(gain);
-                    gain.connect(audioCtx.destination);
-                    osc.start(audioCtx.currentTime + time);
-                    osc.stop(audioCtx.currentTime + time + 0.05);
-                    time += 0.1 + (i * 0.02); // Se va ralentizando el sonido
+                    osc.connect(gain); gain.connect(audioCtx.destination);
+                    osc.start(audioCtx.currentTime + time); osc.stop(audioCtx.currentTime + time + 0.05);
+                    time += 0.1 + (i * 0.02);
                 }
             } catch(e) {}
         }
@@ -472,7 +403,7 @@
         function playWinSound() {
             try {
                 const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-                const notes = [261.63, 329.63, 392.00, 523.25]; // Acorde mayor alegre
+                const notes = [261.63, 329.63, 392.00, 523.25];
                 notes.forEach((freq, index) => {
                     const osc = audioCtx.createOscillator();
                     const gain = audioCtx.createGain();
@@ -480,29 +411,21 @@
                     osc.frequency.setValueAtTime(freq, audioCtx.currentTime + (index * 0.1));
                     gain.gain.setValueAtTime(0.1, audioCtx.currentTime + (index * 0.1));
                     gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + (index * 0.1) + 0.4);
-                    osc.connect(gain);
-                    gain.connect(audioCtx.destination);
-                    osc.start(audioCtx.currentTime + (index * 0.1));
-                    osc.stop(audioCtx.currentTime + (index * 0.1) + 0.4);
+                    osc.connect(gain); gain.connect(audioCtx.destination);
+                    osc.start(audioCtx.currentTime + (index * 0.1)); osc.stop(audioCtx.currentTime + (index * 0.1) + 0.4);
                 });
             } catch(e) {}
         }
 
-        // --- SISTEMA DE CONFETI EN CANVAS ---
+        // --- SISTEMA DE CONFETI ---
         const confettiCanvas = document.getElementById("confetti-canvas");
         const confettiCtx = confettiCanvas.getContext("2d");
-        let confettiInterval;
         let confettiActive = false;
         let particles = [];
-
         const confettiColors = ["#74acdf", "#ffffff", "#f1b51c", "#ffd700", "#1a426e"];
 
-        function resizeCanvas() {
-            confettiCanvas.width = window.innerWidth;
-            confettiCanvas.height = window.innerHeight;
-        }
-        window.addEventListener("resize", resizeCanvas);
-        resizeCanvas();
+        function resizeCanvas() { confettiCanvas.width = window.innerWidth; confettiCanvas.height = window.innerHeight; }
+        window.addEventListener("resize", resizeCanvas); resizeCanvas();
 
         class Particle {
             constructor() {
@@ -514,47 +437,13 @@
                 this.rotationSpeed = Math.random() * 4 - 2;
                 this.color = confettiColors[Math.floor(Math.random() * confettiColors.length)];
             }
-            update() {
-                this.y += this.speed;
-                this.angle += this.rotationSpeed;
-                if (this.y > confettiCanvas.height) {
-                    this.y = -20;
-                    this.x = Math.random() * confettiCanvas.width;
-                }
-            }
-            draw() {
-                confettiCtx.save();
-                confettiCtx.translate(this.x, this.y);
-                confettiCtx.rotate((this.angle * Math.PI) / 180);
-                confettiCtx.fillStyle = this.color;
-                confettiCtx.fillRect(-this.size/2, -this.size/2, this.size, this.size);
-                confettiCtx.restore();
-            }
+            update() { this.y += this.speed; this.angle += this.rotationSpeed; if (this.y > confettiCanvas.height) { this.y = -20; this.x = Math.random() * confettiCanvas.width; } }
+            draw() { confettiCtx.save(); confettiCtx.translate(this.x, this.y); confettiCtx.rotate((this.angle * Math.PI) / 180); confettiCtx.fillStyle = this.color; confettiCtx.fillRect(-this.size/2, -this.size/2, this.size, this.size); confettiCtx.restore(); }
         }
 
-        function startConfetti() {
-            particles = [];
-            for (let i = 0; i < 120; i++) {
-                particles.push(new Particle());
-            }
-            confettiActive = true;
-            animateConfetti();
-        }
-
-        function animateConfetti() {
-            if (!confettiActive) return;
-            confettiCtx.clearRect(0, 0, confettiCanvas.width, confettiCanvas.height);
-            particles.forEach(p => {
-                p.update();
-                p.draw();
-            });
-            requestAnimationFrame(animateConfetti);
-        }
-
-        function stopConfetti() {
-            confettiActive = false;
-            confettiCtx.clearRect(0, 0, confettiCanvas.width, confettiCanvas.height);
-        }
+        function startConfetti() { particles = []; for (let i = 0; i < 120; i++) { particles.push(new Particle()); } confettiActive = true; animateConfetti(); }
+        function animateConfetti() { if (!confettiActive) return; confettiCtx.clearRect(0, 0, confettiCanvas.width, confettiCanvas.height); particles.forEach(p => { p.update(); p.draw(); }); requestAnimationFrame(animateConfetti); }
+        function stopConfetti() { confettiActive = false; confettiCtx.clearRect(0, 0, confettiCanvas.width, confettiCanvas.height); }
     </script>
 </body>
 </html>
